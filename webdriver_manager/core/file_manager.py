@@ -62,13 +62,14 @@ class FileManager(object):
         zip_class = (LinuxZipFileWithPermissions if self._os_system_manager.get_os_name() == "linux" else zipfile.ZipFile)
         archive = zip_class(archive_file.file_path)
         try:
+            raise Exception
             archive.extractall(to_directory)
         except Exception as e:
-            if e.args[0] not in [26, 13] and e.args[1] not in [
-                "Text file busy",
-                "Permission denied",
-            ]:
-                raise e
+            # if e.args[0] not in [26, 13] and e.args[1] not in [
+            #     "Text file busy",
+            #     "Permission denied",
+            # ]:
+            #     raise e
             file_names = []
             for n in archive.namelist():
                 if "/" not in n:
